@@ -49,7 +49,7 @@ with st.sidebar:
     uploaded_file = st.file_uploader("Upload Menu Catalogue", type="pdf")
     if uploaded_file and st.button("Sync Data"):
         # Save path on your D: drive as established
-        save_path = os.path.join("D:/GDS_VectorDB", uploaded_file.name)
+        save_path = os.path.join(".", uploaded_file.name)
         with open(save_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         with st.spinner("Kanya is memorizing the menu..."):
