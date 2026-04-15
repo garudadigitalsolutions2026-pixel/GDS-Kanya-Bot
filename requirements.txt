@@ -4,3 +4,4 @@ pymupdf
 sentence-transformers
 torch
 torchvision
+faiss-cpu
