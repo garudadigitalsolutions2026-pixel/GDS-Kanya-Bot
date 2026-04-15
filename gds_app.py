@@ -4,8 +4,8 @@ import fitz  # PyMuPDF
 import os
 
 # 1. Setup Kanya's Brain & Branding
-st.set_page_config(page_title="Kanya: Sri Kanya Hostess", page_icon="🥘")
-st.title("🥘 Kanya: Sri Kanya Hostess")
+st.set_page_config(page_title="Kanya: Sri Kanya Hostess", page_icon="")
+st.title("🚀 Kanya: Sri Kanya Hostess")
 
 # Load API Key from Streamlit Secrets
 if "GEMINI_API_KEY" in st.secrets:
@@ -54,7 +54,7 @@ if prompt := st.chat_input("Ask me about our food..."):
         menu_context = st.session_state.get("menu_text", "No menu uploaded yet.")
         
         # Call Gemini 1.5 Flash (Fast and efficient for Vizag's favorite menu)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         system_instruction = (
             "You are Kanya, a helpful hostess for Sri Kanya Comfort restaurant in Vizag. "
