@@ -23,9 +23,10 @@ def ingest_pdf(file_input):
 def search_database(query, top_n=15):
     """
     Lightweight version. 
-    Matches the 'top_n' argument sent by gds_app.py to prevent TypeErrors.
+    Returns a LIST of dictionaries to match what gds_app.py expects.
     """
-    # Returns the menu text we stored in the session memory
-    if "menu_text" in st.session_state:
-        return st.session_state["menu_text"]
-    return "Menu data not found. Please upload and sync the menu."
+    # Grab the menu text from memory
+    menu_data = st.session_state.get("menu_text", "Menu data not found. Please upload and sync.")
+    
+    # Wrap it in the 'chunk' format Kanya expects
+    return [{"chunk": menu_data}]
