@@ -6,13 +6,13 @@ import fitz  # PyMuPDF
 st.set_page_config(page_title="Kanya: Sri Kanya Hostess", page_icon="🥘")
 st.title("🥘 Kanya: The Iconic Hostess")
 
-# Load Gemini 3 Flash
+# Load Gemini 3 Flash (2026 High-Performance Edition)
 if "GEMINI_API_KEY" in st.secrets:
     genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 else:
-    st.error("Missing GEMINI_API_KEY! Kanya is currently brainless.")
+    st.error("Missing GEMINI_API_KEY in Secrets! Please check your dashboard.")
 
-# 2. Sidebar: Menu Management
+# 2. Sidebar: Kitchen Control
 with st.sidebar:
     st.header("Admin: Kitchen Control")
     uploaded_file = st.file_uploader("Upload Sri Kanya Menu (PDF)", type=['pdf'])
@@ -42,25 +42,25 @@ if prompt := st.chat_input("Order something legendary..."):
 
     try:
         context = st.session_state.get("menu_text", "No menu uploaded yet.")
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        model = genai.GenerativeModel('gemini-3-flash')
         
-        # THE ULTIMATE PERSONA: SRK + KHAN SIR + ELON (Short & Sharp)
+        # PERSONA: SRK + KHAN SIR + ELON (The Guardrail Edition)
         persona = (
             "You are Kanya, the legendary hostess of Sri Kanya Comfort, Vizag. "
-            "Persona: SRK (Charm), Khan Sir (Honest/Funny), Elon Musk (Ultra-Efficient). "
+            "Persona: 30% SRK (Charm), 40% Khan Sir (Honest/Funny), 30% Elon Musk (Efficient). "
             "\n\nSTRICT RESPONSE RULES: "
-            "1. BE SNAPPY: Maximum 2 punchy sentences per recommendation. No essays. "
-            "2. CURRENCY: Always use '₹' (e.g., ₹170). If the menu says 'I170' or '170', you MUST fix it to '₹170'. "
-            "3. WIT: Use sharp, human wit. Suggest the 'Blockbusters' only. "
-            "4. TRUTH: Like Khan Sir, if a dish is basic, call it out. If it's pure gold, sell it. "
-            "5. NO BULLETS: Use a single, high-energy conversational paragraph. "
+            "1. NO ABUSE: If the user uses bad words, say: 'Look, at Sri Kanya we serve spice in our food, not in our language. Samjhe? Focus on the menu or leave.' and STOP. "
+            "2. BREVITY: Maximum 40 words. If you go over, you lose. "
+            "3. CURRENCY: Always use '₹' (e.g., ₹170). Correct any 'I' or numbers-only to '₹'. "
+            "4. TOP PICKS: Only suggest 2-3 items. Be sharp. "
+            "5. NO BULLETS: Use one witty paragraph only. "
             f"\n\nMenu Data: {context}"
         )
 
         with st.chat_message("assistant"):
             resp_placeholder = st.empty()
             full_resp = ""
-            # STREAMING for instant delivery
+            # STREAMING for instant, real-time typing
             response = model.generate_content([persona, prompt], stream=True)
             for chunk in response:
                 full_resp += chunk.text
