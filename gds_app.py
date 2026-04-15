@@ -42,7 +42,7 @@ if prompt := st.chat_input("Order something legendary..."):
 
     try:
         context = st.session_state.get("menu_text", "No menu uploaded yet.")
-        model = genai.GenerativeModel('gemini-3-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         # PERSONA: SRK + KHAN SIR + ELON (The Guardrail Edition)
         persona = (
